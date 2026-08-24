@@ -1,19 +1,23 @@
-import os
-
+import psycopg
 from fastapi import FastAPI
 
-app = FastAPI()
+from config import settings
 
-# Приветствие сервис берёт из окружения.
-# Нет переменной GREETING — сервис не стартует.
-greeting = os.environ["GREETING"]
+app = FastAPI()
 
 
 @app.get("/")
 def read_root():
-    return {"message": greeting}
+    return {"message": settings.greeting}
 
 
 @app.get("/health")
 def health_check():
     return {"status": "ok"}
+
+
+@app.get("/db-check")
+def db_check():
+    with psycopg.connect(settings.database_url) as conn:
+        conn.execute("SELECT 1")
+    return {"db": "ok"}
