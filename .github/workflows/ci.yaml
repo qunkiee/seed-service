@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      package: write
+      packages: write
     steps:
     - uses: actions/checkout@v7
     - name: Настроить сборщик Docker
@@ -43,4 +43,3 @@ jobs:
         context: .
         push: True
         tags: ghcr.io/${{github.repository}}:latest
-
