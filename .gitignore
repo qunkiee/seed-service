@@ -4,6 +4,8 @@
 
 # Кэши Python
 __pycache__/
+.pytest_cache/
+.ruff_cache/
 *.pyc
 
 # Локальные настройки (появятся на следующем занятии)
